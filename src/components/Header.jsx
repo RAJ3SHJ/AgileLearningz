@@ -11,7 +11,7 @@ export default function Header() {
     }, []);
 
     const links = [
-        { label: 'Manifesto', href: '#manifesto' },
+        { label: 'Home', href: '#hero' },
         { label: 'History', href: '#history' },
         { label: 'Facts', href: '#facts' },
         { label: 'Offerings', href: '#offerings' },
@@ -21,8 +21,8 @@ export default function Header() {
         <header
             id="site-header"
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-                    ? 'bg-brand-deep/95 backdrop-blur-md shadow-lg shadow-brand-deep/20'
-                    : 'bg-brand-deep'
+                ? 'bg-brand-deep/95 backdrop-blur-md shadow-lg shadow-brand-deep/20'
+                : 'bg-brand-deep'
                 }`}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

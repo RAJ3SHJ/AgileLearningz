@@ -1,5 +1,5 @@
 import Header from './components/Header';
-import HeroManifesto from './components/HeroManifesto';
+import HeroSection from './components/HeroManifesto';
 import HistoryTimeline from './components/HistoryTimeline';
 import ImportanceROI from './components/ImportanceROI';
 import FastFacts from './components/FastFacts';
@@ -12,7 +12,7 @@ export default function App() {
     <div className="min-h-screen">
       <Header />
       <main>
-        <HeroManifesto />
+        <HeroSection />
         <HistoryTimeline />
         <ImportanceROI />
         <FastFacts />

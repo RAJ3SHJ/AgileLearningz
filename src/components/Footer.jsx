@@ -26,7 +26,7 @@ export default function Footer() {
                         </h4>
                         <ul className="space-y-2">
                             {[
-                                { label: 'Manifesto', href: '#manifesto' },
+                                { label: 'Home', href: '#hero' },
                                 { label: 'History', href: '#history' },
                                 { label: 'Fast Facts', href: '#facts' },
                                 { label: 'Offerings', href: '#offerings' },

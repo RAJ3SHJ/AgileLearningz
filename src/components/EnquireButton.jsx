@@ -1,16 +1,35 @@
 import { useState } from 'react';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '../firebase';
 
 export default function EnquireButton() {
     const [open, setOpen] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
     const [form, setForm] = useState({ name: '', phone: '', email: '' });
 
     const handleChange = (e) =>
         setForm({ ...form, [e.target.name]: e.target.value });
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setSubmitted(true);
+        setLoading(true);
+        setError(null);
+        try {
+            await addDoc(collection(db, 'enquiries'), {
+                name: form.name,
+                phone: form.phone,
+                email: form.email,
+                submittedAt: serverTimestamp(),
+            });
+            setSubmitted(true);
+        } catch (err) {
+            console.error('Firebase error:', err);
+            setError('Something went wrong. Please try again.');
+        } finally {
+            setLoading(false);
+        }
     };
 
     const handleClose = () => {
@@ -130,10 +149,14 @@ export default function EnquireButton() {
                                     <button
                                         id="enquire-submit"
                                         type="submit"
-                                        className="w-full py-3 rounded-xl bg-brand-emerald hover:bg-brand-emerald-dark text-white font-semibold text-sm transition-all duration-300 hover:shadow-lg hover:shadow-brand-emerald/30 active:scale-[0.98]"
+                                        disabled={loading}
+                                        className="w-full py-3 rounded-xl bg-brand-emerald hover:bg-brand-emerald-dark text-white font-semibold text-sm transition-all duration-300 hover:shadow-lg hover:shadow-brand-emerald/30 active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
                                     >
-                                        Submit
+                                        {loading ? 'Submitting...' : 'Submit'}
                                     </button>
+                                    {error && (
+                                        <p className="text-red-500 text-xs text-center mt-2">{error}</p>
+                                    )}
                                 </form>
                             </>
                         ) : (
