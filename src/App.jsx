@@ -4,6 +4,7 @@ import HistoryTimeline from './components/HistoryTimeline';
 import ImportanceROI from './components/ImportanceROI';
 import FastFacts from './components/FastFacts';
 import Offerings from './components/Offerings';
+import BAandPOTraining from './components/BAandPOTraining';
 import EnquireButton from './components/EnquireButton';
 import Footer from './components/Footer';
 
@@ -13,6 +14,7 @@ export default function App() {
       <Header />
       <main>
         <HeroSection />
+        <BAandPOTraining />
         <HistoryTimeline />
         <ImportanceROI />
         <FastFacts />
